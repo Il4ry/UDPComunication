@@ -1,8 +1,5 @@
-package server;
-
 import java.io.IOException;
 import java.net.*;
-import java.util.Scanner;
 
 public class MainServer {
     public static void main(String[] args) {
