@@ -1,7 +1,5 @@
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
+import java.net.*;
 import java.util.Scanner;
 
 public class MainClient {
@@ -11,7 +9,7 @@ public class MainClient {
             try {
                 InetAddress serverAddress = InetAddress.getLocalHost();
                 System.out.println("Indirizzo del server trovato!");
-                while(true) {
+                while (true) {
                     DatagramSocket dSocket = new DatagramSocket();
                     //si prepara il datagramma con i dati da inviare
                     System.out.println("Scrivi il messaggio da voler mandare al server: ");
@@ -27,8 +25,12 @@ public class MainClient {
                     String Servermessage = new String(inputPacket.getData(), 0, inputPacket.getLength());
                     System.out.println("Server: " + Servermessage);
                 }
-            } catch (IOException e) {
-                System.out.println("Errore");
+            }catch(UnknownHostException e){ //eccezione per input/output
+                System.err.println("Indirizzo server non trovato");
+            }catch (SocketException e) {
+                System.err.println("Errore socket");
+            }catch (IOException e) {
+                System.err.println("Errore");
             }
 
     }
